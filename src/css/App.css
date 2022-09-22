@@ -1,0 +1,114 @@
+.navbar {
+  border-bottom: 15px solid #9A1413;
+  background: #fff;
+}
+
+.container-frame {
+  background: rgb(240, 239, 239);
+  padding: 10px;
+  height: calc(100vh - 101px - 16px - 62px);;
+  overflow: auto;
+}
+
+.conatiner-pagepdf {
+  margin-bottom: 35px;
+}
+
+.react-pdf__Document:hover .page-controls {
+  opacity: 1;
+}
+
+.page-controls {
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  background: white;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity ease-in-out 0.2s;
+  box-shadow: 0 30px 40px 0 rgb(16 36 94 / 20%);
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.page-controls button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.page-controls span {
+  font: inherit;
+  font-size: 0.8em;
+  padding: 0 0.5em;
+}
+
+.page-controls button {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: 0;
+  font: inherit;
+  font-size: 0.8em;
+  border-radius: 4px;
+}
+
+.page-controls button:enabled:hover {
+  cursor: pointer;
+}
+
+.page-controls button:enabled:hover{
+  background-color: #e6e6e6;
+}
+
+.page-controls button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.page-controls button:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* .react-pdf__Page__canvas:hover{
+  cursor: progress;
+} */
+
+/**footer**/
+.containerFooter {
+  width: 100%;
+  padding: 5px;
+  color: white;
+  font-size: 12px;
+  margin-top: auto;
+  text-align: center;
+  background: #9A1413;
+}
+
+/** scroll **/
+.container-frame::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.container-frame::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.container-frame::-webkit-scrollbar-button:increment,
+.container-frame::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.container-frame::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.container-frame::-webkit-scrollbar-thumb {
+  background-color: #dbd8d8;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.container-frame::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}
