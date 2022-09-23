@@ -9,9 +9,16 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 function App() {
   const { namepdf } = useParams();
+  const [width, setWindowWidth] = useState(0);
   const [fileBase64, setFileBase64] = useState("");
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
 
   useEffect(() => {
     fetch(URL_API + `getValidarDocumentoPdf/${namepdf}`, {
@@ -29,19 +36,28 @@ function App() {
       });
   }, [namepdf, fileBase64]);
 
+  const updateDimensions = () => {
+    const width = window.innerWidth;
+    setWindowWidth(width);
+  };
+
+  const responsive = {
+    showStyleMobil: width < 1024 ? 495 : 0,
+  };
+
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
 
-  function changePage(offset){
-    setPageNumber(prevPageNumber => prevPageNumber + offset);
+  function changePage(offset) {
+    setPageNumber((prevPageNumber) => prevPageNumber + offset);
   }
 
-  function changePageBack(){
+  function changePageBack() {
     changePage(-1);
   }
 
-  function changePageNext(){
+  function changePageNext() {
     changePage(+1);
   }
 
@@ -58,17 +74,27 @@ function App() {
       </nav>
       <div className="container mt-3 mb-3">
         <center className="container-frame">
-          <Document
-            file={fileBase64}
-            onLoadSuccess={onDocumentLoadSuccess}>
-            <Page className="conatiner-pagepdf" pageNumber={pageNumber} />
+          <Document file={fileBase64} onLoadSuccess={onDocumentLoadSuccess}>
+            <Page height={responsive.showStyleMobil} className="conatiner-pagepdf" pageNumber={pageNumber} />
 
             <div className="page-controls">
-              <button type="button" onClick={changePageBack} disabled={pageNumber > 1 ? "" : true}>
+              <button
+                type="button"
+                onClick={changePageBack}
+                disabled={pageNumber > 1 ? "" : true}
+              >
                 ‹
               </button>
-              <span>{pageNumber} de {numPages}</span>
-              <button type="button" onClick={changePageNext} disabled={pageNumber < numPages ? "" : true}>›</button>
+              <span>
+                {pageNumber} de {numPages}
+              </span>
+              <button
+                type="button"
+                onClick={changePageNext}
+                disabled={pageNumber < numPages ? "" : true}
+              >
+                ›
+              </button>
             </div>
           </Document>
         </center>
