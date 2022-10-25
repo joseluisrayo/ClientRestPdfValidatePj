@@ -73,7 +73,7 @@ function App() {
         </div>
       </nav>
       <div className="container mt-3 mb-3">
-        <center className="container-frame">
+        <div className="container-frame d-flex justify-content-center">
           <Document file={fileBase64} onLoadSuccess={onDocumentLoadSuccess}>
             <Page height={responsive.showStyleMobil} className="conatiner-pagepdf" pageNumber={pageNumber} />
 
@@ -97,7 +97,7 @@ function App() {
               </button>
             </div>
           </Document>
-        </center>
+        </div>
       </div>
       <div className="containerFooter">
         Av. Paseo de la República S/N Palacio de Justicia, Cercado, Lima - Perú
